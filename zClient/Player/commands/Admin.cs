@@ -12,6 +12,8 @@ namespace zClient
 {
     internal class Admin : Auth
     {
+        ChatMessage chatmes = new ChatMessage();
+
         public Admin() { EventHandlers["onLogin"] += new Action(onLogin); }
 
         private void onLogin()
@@ -21,7 +23,13 @@ namespace zClient
                 RegisterCommand("id", new Action<int, List<object>, string>((source, args, raw) => {
                     TriggerServerEvent("getUserInfo",  args[0]);
                 }), false);
+
+                RegisterCommand("coords", new Action<int, List<object>, string>((source, args, raw) => {
+                     chatmes.send(GetEntityCoords(PlayerPedId(), false).ToString());
+                }), false);
+
             }
         }
+
     }
 }
