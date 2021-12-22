@@ -64,5 +64,10 @@
       <Version>13.0.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="html\login.html" />
+    <Content Include="html\static\css\login.css" />
+    <Content Include="html\static\js\login.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
