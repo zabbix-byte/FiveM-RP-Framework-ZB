@@ -19,7 +19,7 @@ namespace zClient
             if (this.group == "admin")
             {
                 RegisterCommand("id", new Action<int, List<object>, string>((source, args, raw) => {
-                    TriggerServerEvent("getUserInfo",  args[0].ToString());
+                    TriggerServerEvent("getUserInfo",  args[0]);
                 }), false);
             }
         }

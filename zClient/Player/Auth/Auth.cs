@@ -12,6 +12,7 @@ namespace zClient
 {
     public class Auth : BaseScript
     {
+        IniFile config = new IniFile("ZombiLand", "config.ini");
         ChatMessage chatmes = new ChatMessage();
         public string username { get; set; }
         public string email { get; set; }
@@ -30,6 +31,7 @@ namespace zClient
         private void OnClientResourceStart(string resourceName)
         {
             if (GetCurrentResourceName() != resourceName) return;
+
             RegisterCommand("login", new Action<int, List<object>, string>((source, args, raw) =>
             {
              TriggerServerEvent("login", args[0], args[1], GetPlayerServerId(PlayerId())); 
@@ -44,6 +46,15 @@ namespace zClient
 
         private void login(string username, string email, string group, int temporal_id) 
         {
+            string default_skin = config.GetStringValue("spawn_manager", "default_skin", "fallback").ToString();
+            float x = float.Parse(config.GetStringValue("spawn_manager", "x", "fallback"));
+            float y = float.Parse(config.GetStringValue("spawn_manager", "y", "fallback"));
+            float z = float.Parse(config.GetStringValue("spawn_manager", "z", "fallback"));
+            float heading = float.Parse(config.GetStringValue("spawn_manager", "heading", "fallback"));
+
+            SpawnManager spawn = new SpawnManager();
+            spawn.spawnPlayer(default_skin, x, y, z, heading);
+
             this.username = username;
             this.email = email;
             this.group = group;
