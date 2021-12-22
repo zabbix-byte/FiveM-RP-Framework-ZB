@@ -34,7 +34,15 @@ namespace zClient
 
             RegisterCommand("login", new Action<int, List<object>, string>((source, args, raw) =>
             {
-             TriggerServerEvent("login", args[0], args[1], GetPlayerServerId(PlayerId())); 
+                if (this.temporal_id > 0)
+                {
+                    chatmes.send("You are already logged in");
+                }
+                else
+                {
+                    TriggerServerEvent("login", args[0], args[1], GetPlayerServerId(PlayerId()));
+                }
+              
             }), false);
 
             RegisterCommand("register", new Action<int, List<object>, string>((source, args, raw) =>
