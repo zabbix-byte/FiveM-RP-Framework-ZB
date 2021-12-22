@@ -19,18 +19,18 @@ namespace zClient
         public string group { get; set; }
         public int temporal_id { get; set; }
 
-        public Auth(){
-
+        public Auth()
+        {
             checkLogin();
-
             EventHandlers["onClientResourceStart"] += new Action<string>(OnClientResourceStart);
             EventHandlers["login"] += new Action<string, string, string, int>(login);
-
         }
 
         private void OnClientResourceStart(string resourceName)
         {
             if (GetCurrentResourceName() != resourceName) return;
+
+            TriggerServerEvent("loginNui");
 
             RegisterCommand("login", new Action<int, List<object>, string>((source, args, raw) =>
             {

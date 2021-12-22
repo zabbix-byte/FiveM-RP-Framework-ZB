@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 // fivem imports
 using CitizenFX.Core;
@@ -40,8 +41,17 @@ namespace zServer
             EventHandlers["register"] += new Action<Player, string, string, string>(register);
             EventHandlers["logout"] += new Action<string>(logout);
 
+            EventHandlers["loginNui"] += new Action<Player>(loginNui);
+
             EventHandlers["playerDropped"] += new Action<Player, string>(OnPlayerDropped);
             EventHandlers["playerConnecting"] += new Action<Player, string>(playerConnecting);
+        }
+
+
+        private void loginNui([FromSource] Player user)
+        {
+            string SerializedObject = JsonConvert.SerializeObject(new { type = "open"});
+            TriggerClientEvent(user, "nui", SerializedObject);
         }
 
         private void login(string username, string password, int temporal_id)
