@@ -31,7 +31,7 @@ namespace zClient
                 RegisterCommand("tpa", new Action<int, List<object>, string>((source, args, raw) => {
                     int player_id = Int32.Parse(args[0].ToString());
                     Vector3 player_coords = GetEntityCoords(NetworkGetEntityFromNetworkId(player_id), false);
-                    SetEntityCoords(PlayerPedId(),player_coords.X, player_coords.Y, player_coords.Z, false, false, false, false); 
+                    SetEntityCoords(PlayerPedId(), player_coords.X, player_coords.Y, player_coords.Z, false, false, false, false);
                 }), false);
 
             }
