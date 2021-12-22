@@ -32,12 +32,12 @@ namespace zClient
             if (GetCurrentResourceName() != resourceName) return;
             RegisterCommand("login", new Action<int, List<object>, string>((source, args, raw) =>
             {
-             TriggerServerEvent("login", args[0].ToString(), args[1].ToString(), GetPlayerServerId(PlayerId())); 
+             TriggerServerEvent("login", args[0], args[1], GetPlayerServerId(PlayerId())); 
             }), false);
 
             RegisterCommand("register", new Action<int, List<object>, string>((source, args, raw) =>
             {
-                TriggerServerEvent("register", args[0].ToString(), args[1].ToString(), args[2].ToString());
+                TriggerServerEvent("register", args[0], args[1], args[2]);
 
             }), false);
         }

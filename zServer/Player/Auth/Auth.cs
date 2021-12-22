@@ -18,6 +18,24 @@ namespace zServer
 
         public Auth()
         {
+            Console.WriteLine($"    ===========================================\n"); 
+            Console.WriteLine($"        Welcome to ZombiLand Framework.");
+            Console.WriteLine($"    _");
+
+            Dictionary<int, string[]> data_test =  database_conection.directQuery("SELECT version()");
+            if (data_test[0][0] =="Conexion error")
+            {
+                Console.WriteLine($"        DataBase conexion error \n        Check the config.ini \n ");
+
+            }
+            else
+            {
+                Console.WriteLine($"        DataBase conexion successful \n        DataBase Version: {data_test[0][0]} \n ");
+            }
+
+            Console.WriteLine($"    ===========================================\n");
+
+
             EventHandlers["login"] += new Action<string, string, int>(login);
             EventHandlers["register"] += new Action<Player, string, string, string>(register);
             EventHandlers["logout"] += new Action<string>(logout);
@@ -25,7 +43,6 @@ namespace zServer
             EventHandlers["playerDropped"] += new Action<Player, string>(OnPlayerDropped);
             EventHandlers["playerConnecting"] += new Action<Player, string>(playerConnecting);
         }
-
 
         private void login(string username, string password, int temporal_id)
         {
