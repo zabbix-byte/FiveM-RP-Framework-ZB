@@ -1,3 +1,3 @@
 # ZombiLand
-#### ZombieLand is a Fivem Framework made in c#
+#### ZombieLand is a Fivem Framework for Zombi and Roleplay Servers.
 #### Creation stage

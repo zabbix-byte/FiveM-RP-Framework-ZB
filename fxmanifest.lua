@@ -15,7 +15,7 @@ server_scripts {
 
 files {
     './config.ini',
-    './html/static/css/login.css',
-    './html/static/js/login.js',
-    './html/login.html',
+    './zClient/html/static/css/login.css',
+    './zClient/html/static/js/login.js',
+    './zClient/html/login.html',
 }
