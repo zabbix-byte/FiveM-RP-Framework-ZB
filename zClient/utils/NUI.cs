@@ -16,13 +16,14 @@ namespace zClient
         ChatMessage chatmes = new ChatMessage();
         public NUI()
         {
-            EventHandlers["nui"] += new Action<string>(nui);
+            nui();
         }
 
-        private void nui(string SerializeObject)
+        private void nui()
         {
-            chatmes.send("Hola");
-            SendNuiMessage(SerializeObject);
+            string jsonString = "{\"type\":\"enableui\",\"enable\":true}";
+            SetNuiFocus(true, false);
+            SendNuiMessage(jsonString);
         }
     }
 }
