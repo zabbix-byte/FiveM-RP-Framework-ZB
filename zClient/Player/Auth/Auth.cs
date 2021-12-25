@@ -11,7 +11,7 @@ using static CitizenFX.Core.Native.API;
 namespace zClient
 {
     public class Auth : BaseScript
-    {
+    {   NUI int_nui = new NUI();
         IniFile config = new IniFile("ZombiLand", "config.ini");
         ChatMessage chatmes = new ChatMessage();
         public string username { get; set; }
@@ -30,16 +30,17 @@ namespace zClient
         {
             if (GetCurrentResourceName() != resourceName) return;
 
-            TriggerServerEvent("loginNui");
-
+            
             RegisterCommand("login", new Action<int, List<object>, string>((source, args, raw) =>
             {
                 if (this.temporal_id > 0)
                 {
+                    int_nui.loginNui(false);
                     chatmes.send("You are already logged in");
                 }
                 else
                 {
+                    int_nui.loginNui(true);
                     TriggerServerEvent("login", args[0], args[1], GetPlayerServerId(PlayerId()));
                 }
               

@@ -83,6 +83,7 @@ namespace zServer
 
             if (this.OpenConnection() == "ok")
             {
+
                 MySqlCommand cmd = new MySqlCommand(query, connection);
                 MySqlDataReader dataReader = cmd.ExecuteReader();
 
@@ -92,6 +93,7 @@ namespace zServer
                     while (dataReader.Read())
                     {
                         string[] q_values = new String[dataReader.FieldCount];
+
                         for (int i = 0; i < dataReader.FieldCount; i++)
                         {
                             q_values.SetValue(dataReader.GetValue(i).ToString(), i);

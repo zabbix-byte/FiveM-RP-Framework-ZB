@@ -12,17 +12,17 @@ namespace zClient
 {
     internal class NUI : BaseScript
     {
-
         ChatMessage chatmes = new ChatMessage();
+
         public NUI()
         {
-            nui();
-        }
 
-        private void nui()
+        }
+        public void loginNui(bool open_nui)
         {
-            string jsonString = "{\"type\":\"enableui\",\"enable\":true}";
-            SetNuiFocus(true, false);
+            string jsonString;
+            if (open_nui == true){jsonString = "{\"showLoginMenu\": true }";}
+            else {jsonString = "{\"showLoginMenu\": false }";}
             SendNuiMessage(jsonString);
         }
     }

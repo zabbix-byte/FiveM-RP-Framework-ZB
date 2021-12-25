@@ -53,7 +53,6 @@ namespace zServer
 
             PlayerList player = new PlayerList();
             Player user = player[temporal_id];
-
             if (password == data[0][0])
             {   
                 string temporal_id_q = $"UPDATE users SET temporal_id = '{temporal_id}' WHERE username = '{username}'";

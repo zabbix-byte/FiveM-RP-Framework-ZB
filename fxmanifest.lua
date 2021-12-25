@@ -13,9 +13,14 @@ server_scripts {
     './zServer/bin/Release/zServer.net.dll',
 }
 
+
+ui_pages {
+    './zClient/html/login.html',
+}
+
 files {
     './config.ini',
+    './zClient/html/login.html',    
     './zClient/html/static/css/login.css',
-    './zClient/html/static/js/login.js',
-    './zClient/html/login.html',
+    './zClient/html/static/js/login.js'
 }
