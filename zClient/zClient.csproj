@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Player\Auth\Auth.cs" />
     <Compile Include="Player\Auth\AuthCommands.cs" />
+    <Compile Include="Player\Auth\loginNui.cs" />
     <Compile Include="Player\commands\Admin.cs" />
     <Compile Include="Player\Inventory\Inventory.cs" />
     <Compile Include="Player\Skills\Skill.cs" />

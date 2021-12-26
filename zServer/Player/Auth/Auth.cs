@@ -37,7 +37,7 @@ namespace zServer
             Console.WriteLine($"    ===========================================\n");
 
 
-            EventHandlers["login"] += new Action<string, string, int>(login);
+            EventHandlers["login"] += new Action<Player, string, string, int>(login);
             EventHandlers["register"] += new Action<Player, string, string, string>(register);
             EventHandlers["logout"] += new Action<string>(logout);
 
@@ -46,21 +46,20 @@ namespace zServer
         }
 
 
-        private void login(string username, string password, int temporal_id)
+        private void login([FromSource] Player user, string username, string password, int temporal_id)
         {
             Dictionary<int, string[]> data = database_conection.directQuery(
                 $"SELECT password, email, `group`  FROM users WHERE username = '{username}';");
 
-            PlayerList player = new PlayerList();
-            Player user = player[temporal_id];
             if (password == data[0][0])
             {   
                 string temporal_id_q = $"UPDATE users SET temporal_id = '{temporal_id}' WHERE username = '{username}'";
                 database_conection.update(temporal_id_q);
                 TriggerClientEvent(user, "login", username, data[0][1], data[0][2], temporal_id);
                 TriggerClientEvent(user, "sendOnUserChat", $"Welcome {username} have fun!");
+                Console.WriteLine($"{username} Login");
             }
-            else { TriggerClientEvent(user, "sendOnUserChat", $"The user or password is wrong");}
+            else { TriggerClientEvent(user, "loginNui", true, true);}
         }
 
 

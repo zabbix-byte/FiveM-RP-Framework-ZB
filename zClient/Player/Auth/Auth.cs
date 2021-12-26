@@ -11,7 +11,8 @@ using static CitizenFX.Core.Native.API;
 namespace zClient
 {
     public class Auth : BaseScript
-    {   NUI int_nui = new NUI();
+    {   
+        NUI gamenui = new NUI();
         IniFile config = new IniFile("ZombiLand", "config.ini");
         ChatMessage chatmes = new ChatMessage();
         public string username { get; set; }
@@ -20,8 +21,7 @@ namespace zClient
         public int temporal_id { get; set; }
 
         public Auth()
-        {
-            checkLogin();
+        {   
             EventHandlers["onClientResourceStart"] += new Action<string>(OnClientResourceStart);
             EventHandlers["login"] += new Action<string, string, string, int>(login);
         }
@@ -30,21 +30,7 @@ namespace zClient
         {
             if (GetCurrentResourceName() != resourceName) return;
 
-            
-            RegisterCommand("login", new Action<int, List<object>, string>((source, args, raw) =>
-            {
-                if (this.temporal_id > 0)
-                {
-                    int_nui.loginNui(false);
-                    chatmes.send("You are already logged in");
-                }
-                else
-                {
-                    int_nui.loginNui(true);
-                    TriggerServerEvent("login", args[0], args[1], GetPlayerServerId(PlayerId()));
-                }
-              
-            }), false);
+            checkLogin();
 
             RegisterCommand("register", new Action<int, List<object>, string>((source, args, raw) =>
             {
@@ -63,7 +49,6 @@ namespace zClient
 
             SpawnManager spawn = new SpawnManager();
             spawn.spawnPlayer(default_skin, x, y, z, heading);
-
             this.username = username;
             this.email = email;
             this.group = group;
@@ -73,23 +58,30 @@ namespace zClient
 
         private async void checkLogin()
         {
+            bool player_freeze = false;
+
             while (true)
             {
                 await Delay(0);
                 if (temporal_id > 0)
                 {
                     FreezeEntityPosition(PlayerPedId(), false);
+                    gamenui.loginNui(false, false);
                     break;
                 }
                 else
                 {
-                    FreezeEntityPosition(PlayerPedId(), true);
+                    if (player_freeze == false)
+                    {
+                        FreezeEntityPosition(PlayerPedId(), true);
+                        gamenui.loginNui(true, false);
+                        player_freeze = true;
+                    }
                 }
 
             }
-
-
         }
+
 
     }
 }
