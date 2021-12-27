@@ -15,12 +15,12 @@ server_scripts {
 
 
 ui_pages {
-    './zClient/html/login.html',
+    './zClient/html/auth.html', #login and register page
 }
 
 files {
     './config.ini',
-    './zClient/html/login.html',    
-    './zClient/html/static/css/login.css',
-    './zClient/html/static/js/login.js'
+    './zClient/html/auth.html',    
+    './zClient/html/static/css/auth.css',
+    './zClient/html/static/js/auth.js'
 }

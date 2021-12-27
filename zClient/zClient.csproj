@@ -66,9 +66,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="html\login.html" />
-    <Content Include="html\static\css\login.css" />
-    <Content Include="html\static\js\login.js" />
+    <Content Include="html\auth.html" />
+    <Content Include="html\static\css\auth.css" />
+    <Content Include="html\static\js\auth.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
