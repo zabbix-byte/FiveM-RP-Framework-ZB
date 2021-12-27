@@ -58,7 +58,6 @@ namespace zClient
 
         private async void checkLogin()
         {
-            bool player_freeze = false;
 
             while (true)
             {
@@ -66,17 +65,14 @@ namespace zClient
                 if (temporal_id > 0)
                 {
                     FreezeEntityPosition(PlayerPedId(), false);
-                    gamenui.loginNui(false, false);
+                    gamenui.loginNui(false, false, false);
                     break;
                 }
                 else
                 {
-                    if (player_freeze == false)
-                    {
-                        FreezeEntityPosition(PlayerPedId(), true);
-                        gamenui.loginNui(true, false);
-                        player_freeze = true;
-                    }
+                  FreezeEntityPosition(PlayerPedId(), true);
+                  gamenui.loginNui(true, false, false);
+
                 }
 
             }

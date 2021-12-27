@@ -15,22 +15,30 @@ namespace zClient
         ChatMessage chatmes = new ChatMessage();
 
         public NUI(){
-            EventHandlers["loginNui"] += new Action<bool, bool>(loginNui);
+            EventHandlers["loginNui"] += new Action<bool, bool, bool>(loginNui);
         }
 
-        public void loginNui(bool open_nui, bool error = false)
+        public void loginNui(bool open_nui, bool login_error, bool register_error)
         {
             string jsonString;
 
             if (open_nui == true)
             {
-                if (error == false)
+                if (login_error == true)
                 {
-                    jsonString = "{\"showLoginMenu\": true}";
+                    if (register_error == true)
+                    {
+                        jsonString = "{\"showLoginMenu\": true,  \"message\": \"The username or email exists\" }";
+                    }
+                    else
+                    {
+                        jsonString = "{\"showLoginMenu\": true,  \"message\": \"The username or password is wrong\" }";
+                    }
+                    
                 }
                 else
                 {
-                    jsonString = "{\"showLoginMenu\": true,  \"message\": \"The username or password is wrong\" }";
+                    jsonString = "{\"showLoginMenu\": true}";
                 }
                 
                 SetNuiFocus(true, true);
@@ -42,5 +50,8 @@ namespace zClient
 
             SendNuiMessage(jsonString);
         }
+
     }
+
 }
+

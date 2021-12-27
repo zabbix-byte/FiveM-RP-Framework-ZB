@@ -55,7 +55,7 @@ namespace zServer
         }
 
         //Close connection
-        private bool CloseConnection()
+        public bool CloseConnection()
         {
             try
             {
@@ -76,6 +76,7 @@ namespace zServer
                 cmd.ExecuteNonQuery();
                 this.CloseConnection();
             }
+            this.CloseConnection();
         }
         public Dictionary<int, string[]> directQuery(string query)
         {
@@ -120,6 +121,7 @@ namespace zServer
                 cmd.ExecuteNonQuery();
                 this.CloseConnection();
             }
+            this.CloseConnection();
         }
 
     }

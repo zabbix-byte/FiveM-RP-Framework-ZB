@@ -59,14 +59,24 @@ namespace zServer
                 TriggerClientEvent(user, "sendOnUserChat", $"Welcome {username} have fun!");
                 Console.WriteLine($"{username} Login");
             }
-            else { TriggerClientEvent(user, "loginNui", true, true);}
+            else { TriggerClientEvent(user, "loginNui", true, true, false);}
         }
 
 
         private void register([FromSource] Player user, string username, string email, string password)
         {
             string query = $"INSERT INTO `users` (`username`, `email`, `group`, `password`) VALUES ('{username}', '{email}', 'user', '{password}')";
-            database_conection.insert(query);   
+            try
+            {
+                database_conection.insert(query);
+            }
+            catch (Exception ex)
+            {
+                TriggerClientEvent(user, "loginNui", true, true, true);
+                database_conection.CloseConnection();
+            }
+ 
+            
         }
 
         private void logout(string username)

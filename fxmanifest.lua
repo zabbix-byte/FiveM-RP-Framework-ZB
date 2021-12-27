@@ -15,7 +15,7 @@ server_scripts {
 
 
 ui_pages {
-    './zClient/html/auth.html', #login and register page
+    './zClient/html/auth.html',
 }
 
 files {

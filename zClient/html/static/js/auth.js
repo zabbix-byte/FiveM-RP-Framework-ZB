@@ -11,6 +11,24 @@ $(function () {
         }
     });
 
+    $("#submit_register").click(function () {
+        var user = $("#register_username").val();
+        var mail = $("#register_email").val();
+        var pass = $("#register_password").val();
+
+        fetch(`https://ZombiLand/register_nui`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                username: user,
+                email: mail,
+                password: pass
+            })
+        }).then(resp => resp.json()).then(resp => console.log(resp));
+    });
+
 
     $("#submit_login").click(function () {
         var user = $("#login_username").val();
