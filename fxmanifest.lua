@@ -15,12 +15,15 @@ server_scripts {
 
 
 ui_pages {
-    './zClient/html/auth.html',
+    './zClient/html/zombiland.html'
 }
 
 files {
     './config.ini',
-    './zClient/html/auth.html',    
-    './zClient/html/static/css/auth.css',
-    './zClient/html/static/js/auth.js'
+
+    './zClient/html/zombiland.html',    
+    './zClient/html/static/js/zombiland.js',
+    
+    './zClient/html/static/css/login.css',
+    './zClient/html/static/css/create_character.css',
 }

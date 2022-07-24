@@ -31,12 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CitizenFX.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\AppData\Local\FiveM\FiveM.app\citizen\clr2\lib\mono\4.5\CitizenFX.Core.dll</HintPath>
-    </Reference>
     <Reference Include="CitizenFX.Core.Client">
-      <HintPath>..\..\..\..\AppData\Local\FiveM\FiveM.app\citizen\clr2\lib\mono\4.5\CitizenFX.Core.Client.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\AppData\Local\FiveM\FiveM.app\citizen\clr2\lib\mono\4.5\ref\CitizenFX.Core.Client.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,6 +47,7 @@
     <Compile Include="Player\Auth\Auth.cs" />
     <Compile Include="Player\Auth\AuthCommands.cs" />
     <Compile Include="Player\Auth\loginNui.cs" />
+    <Compile Include="Player\character\character.cs" />
     <Compile Include="Player\commands\Admin.cs" />
     <Compile Include="Player\Inventory\Inventory.cs" />
     <Compile Include="Player\Skills\Skill.cs" />
@@ -64,11 +61,15 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
+    <PackageReference Include="System.Configuration.ConfigurationManager">
+      <Version>6.0.0</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="html\auth.html" />
-    <Content Include="html\static\css\auth.css" />
-    <Content Include="html\static\js\auth.js" />
+    <Content Include="html\zombiland.html" />
+    <Content Include="html\static\css\create_character.css" />
+    <Content Include="html\static\css\login.css" />
+    <Content Include="html\static\js\zombiland.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

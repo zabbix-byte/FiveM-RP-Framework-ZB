@@ -1,14 +1,28 @@
 $(function () {
     window.addEventListener('message', function (event) {
         var item = event.data;
+
         if (item.message) {
             this.document.getElementById("message_error").innerHTML = item.message;
+            console.log(1);
         }
         if (item.showLoginMenu == true) {
+            document.getElementsByClassName("showLoginMenu")[0].style.display = "block";
             document.getElementsByTagName("body")[0].style.display = "block";
-        } else {
-            document.getElementsByTagName("body")[0].style.display = "none";
+            console.log(2);
+        } else if (item.showcharacterDressNui == true) {
+            document.getElementsByClassName("showcharacterDressNui")[0].style.display = "block";
+            document.getElementsByTagName("body")[0].style.display = "block";
+            document.getElementsByTagName("body")[0].style.backgroundColor = "transparent";
+            console.log(4);
         }
+        else {
+            document.getElementsByClassName('showLoginMenu')[0].style.display = "none";
+            document.getElementsByClassName('showcharacterDressNui')[0].style.display = "none";
+            document.getElementsByTagName("body")[0].style.display = "none";
+            console.log(3);
+        } 
+
     });
 
     $("#submit_register").click(function () {
@@ -44,9 +58,36 @@ $(function () {
                 password: pass
             })
         }).then(resp => resp.json()).then(resp => console.log(resp));
+
+    });
+
+    $("#submit_character").click(function () {
+        var width = $("#nose_width").val();
+        var peak = $("#nose_peak").val();
+        var length = $("#nose_length").val();
+        var bone = $("#nose_bone").val();
+        var tip = $("#nose_tip").val();
+        var bone_twist = $("#nose_bone_twist").val();
+
+        fetch(`https://ZombiLand/editcharacter_nui`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                nose_width: width,
+                nose_peak: peak,
+                nose_length: length,
+                nose_bone: bone,
+                nose_tip: tip,
+                nose_bone_twist: bone_twist,
+            })
+        }).then(resp => resp.json()).then(resp => console.log(resp));
     });
 
 });
+
+
 
 
 window.onload = function () {

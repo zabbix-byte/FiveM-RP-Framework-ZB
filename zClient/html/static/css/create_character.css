@@ -1,0 +1,139 @@
+
+:root {
+    --box_backgroud: rgba(0,0,0,0.1);
+    --font: 'Montserrat', sans-serif;
+}
+
+.showcharacterDressNui {
+    padding: 1rem;
+    font-family: var(--font);
+    display: none;
+}
+
+.showcharacterDressNui .main {
+    position: fixed;
+    top: 2%;
+    right: 2%;
+    width: 39%;
+    height: 95%;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+    .showcharacterDressNui .main .header {
+        right: 2%;
+        width: 100%;
+        height: 25px;
+        background: linear-gradient(90deg, #161616 0%, #161616 35%, #787878 100%);
+    }
+        .showcharacterDressNui .main .header h1 {
+            padding: 0.2rem;
+            text-align: left;
+            color: white;
+            font-size: 18px;
+            font-family: var(--font);
+        }
+
+    .showcharacterDressNui .main .nose {
+        width: 100%;
+    }
+        .showcharacterDressNui .main .nose .header {
+            width: 100%;
+            height: 21px;
+            background: linear-gradient(90deg, #161616 0%, #161616 35%, #787878 100%);
+        }
+
+            .showcharacterDressNui .main .nose .header h1 {
+                padding: 0.2rem;
+                text-align: left;
+                color: white;
+                font-size: 14px;
+                font-family: var(--font);
+            }
+
+        .showcharacterDressNui .main .nose .nose_item {
+            border: 1px solid transparent;
+            height: 75px;
+            padding-right: calc(var(--bs-gutter-x) * .2);
+            padding-left: calc(var(--bs-gutter-x) * .1);
+        }
+            .showcharacterDressNui .main .nose .nose_item h1 {
+                color: white;
+                font-family: var(--font);
+                font-size: 11px;
+                height: 75px;
+                width: 100%;
+                background-color: #646464;
+            }
+
+    .showcharacterDressNui .main .eyes {
+        width: 100%;
+    }
+
+        .showcharacterDressNui .main .eyes .header {
+            width: 100%;
+            height: 21px;
+            background: linear-gradient(90deg, #161616 0%, #161616 35%, #787878 100%);
+        }
+
+            .showcharacterDressNui .main .eyes .header h1 {
+                padding: 0.2rem;
+                text-align: left;
+                color: white;
+                font-size: 14px;
+                font-family: var(--font);
+            }
+
+        .showcharacterDressNui .main .eyes .eyes_item {
+            border: 1px solid transparent;
+            height: 75px;
+            padding-right: calc(var(--bs-gutter-x) * .2);
+            padding-left: calc(var(--bs-gutter-x) * .1);
+        }
+
+            .showcharacterDressNui .main .eyes .eyes_item h1 {
+                color: white;
+                font-family: var(--font);
+                font-size: 11px;
+                height: 75px;
+                width: 100%;
+                background-color: #646464;
+            }
+
+    .showcharacterDressNui .main .bone {
+        width: 100%;
+    }
+
+        .showcharacterDressNui .main .bone .header {
+            width: 100%;
+            height: 21px;
+            background: linear-gradient(90deg, #161616 0%, #161616 35%, #787878 100%);
+        }
+
+            .showcharacterDressNui .main .bone .header h1 {
+                padding: 0.2rem;
+                text-align: left;
+                color: white;
+                font-size: 14px;
+                font-family: var(--font);
+            }
+
+        .showcharacterDressNui .main .bone .bone_item {
+            border: 1px solid transparent;
+            height: 100%;
+            padding-right: calc(var(--bs-gutter-x) * .2);
+            padding-left: calc(var(--bs-gutter-x) * .1);
+        }
+
+            .showcharacterDressNui .main .bone .bone_item h1 {
+                color: white;
+                font-family: var(--font);
+                font-size: 11px;
+                height: 75px;
+                width: 100%;
+                background-color: #646464;
+            }
+
+
+
+
+

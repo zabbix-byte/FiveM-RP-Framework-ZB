@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-// fivem imports
+﻿// fivem imports
 using CitizenFX.Core;
+using System;
 using static CitizenFX.Core.Native.API;
 
 namespace zClient
@@ -14,42 +9,66 @@ namespace zClient
     {
         ChatMessage chatmes = new ChatMessage();
 
-        public NUI(){
-            EventHandlers["loginNui"] += new Action<bool, bool, bool>(loginNui);
+        public NUI()
+        {
+            EventHandlers["gameNui"] += new Action<bool, bool, bool, string>(gameNui);
         }
 
-        public void loginNui(bool open_nui, bool login_error, bool register_error)
+        public void gameNui(bool open_nui, bool error, bool register_error, string app_s)
         {
             string jsonString;
 
-            if (open_nui == true)
+            if (app_s == "editcharacter")
             {
-                if (login_error == true)
+                if (open_nui == true)
                 {
-                    if (register_error == true)
-                    {
-                        jsonString = "{\"showLoginMenu\": true,  \"message\": \"The username or email exists\" }";
-                    }
-                    else
-                    {
-                        jsonString = "{\"showLoginMenu\": true,  \"message\": \"The username or password is wrong\" }";
-                    }
-                    
+                    jsonString = "{\"showcharacterDressNui\": true}";
+                    SetNuiFocus(true, true);
                 }
                 else
                 {
-                    jsonString = "{\"showLoginMenu\": true}";
+                    jsonString = "{\"showcharacterDressNui\": false }";
+                    SetNuiFocus(false, false);
                 }
-                
-                SetNuiFocus(true, true);
-            }
-            else { 
-                jsonString = "{\"showLoginMenu\": false }";
-                SetNuiFocus(false, false);
+
+                SendNuiMessage(jsonString);
             }
 
-            SendNuiMessage(jsonString);
+            if (app_s == "login")
+            {
+                if (open_nui == true)
+                {
+                    if (error == true)
+                    {
+                        if (register_error == true)
+                        {
+                            jsonString = "{\"showLoginMenu\": true,  \"message\": \"The username or email exists\" }";
+                        }
+                        else
+                        {
+                            jsonString = "{\"showLoginMenu\": true,  \"message\": \"The username or password is wrong\" }";
+                        }
+
+                    }
+                    else
+                    {
+                        jsonString = "{\"showLoginMenu\": true}";
+                    }
+
+
+
+                    SetNuiFocus(true, true);
+                }
+                else
+                {
+                    jsonString = "{\"showLoginMenu\": false }";
+                    SetNuiFocus(false, false);
+                }
+
+                SendNuiMessage(jsonString);
+            }
         }
+
 
     }
 

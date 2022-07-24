@@ -30,8 +30,8 @@ namespace zClient
             object username;
             object password;
 
-            if (!data.TryGetValue("username", out username)) { gamenui.loginNui(true, false, false); return; }
-            if (!data.TryGetValue("password", out password)) { gamenui.loginNui(true, false, false); return; }
+            if (!data.TryGetValue("username", out username)) { gamenui.gameNui(true, false, false, "login"); return; }
+            if (!data.TryGetValue("password", out password)) { gamenui.gameNui(true, false, false, "login"); return; }
 
             if (this.temporal_id > 0)
             {
@@ -51,9 +51,9 @@ namespace zClient
             object email;
             object password;
 
-            if (!data.TryGetValue("username", out username)) { gamenui.loginNui(true, false, false); return; }
-            if (!data.TryGetValue("email", out email)) { gamenui.loginNui(true, false, false); return; }
-            if (!data.TryGetValue("password", out password)) { gamenui.loginNui(true, false, false); return; }
+            if (!data.TryGetValue("username", out username)) { gamenui.gameNui(true, false, false, "login"); return; }
+            if (!data.TryGetValue("email", out email)) { gamenui.gameNui(true, false, false, "login"); return; }
+            if (!data.TryGetValue("password", out password)) { gamenui.gameNui(true, false, false, "login"); return; }
 
             if (this.temporal_id > 0)
             {
@@ -62,7 +62,7 @@ namespace zClient
             else
             {
                 TriggerServerEvent("register", username.ToString(), email.ToString(), password.ToString());
-                gamenui.loginNui(true, false, false);
+                gamenui.gameNui(true, false, false, "login");
                 return;
             }
 

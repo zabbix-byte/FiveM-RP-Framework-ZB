@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-// fivem imports
+﻿// fivem imports
 using CitizenFX.Core;
+using System;
+using System.Collections.Generic;
 using static CitizenFX.Core.Native.API;
 
 namespace zClient
 {
     public class Auth : BaseScript
-    {   
+    {
         NUI gamenui = new NUI();
         IniFile config = new IniFile("ZombiLand", "config.ini");
         ChatMessage chatmes = new ChatMessage();
@@ -21,7 +17,7 @@ namespace zClient
         public int temporal_id { get; set; }
 
         public Auth()
-        {   
+        {
             EventHandlers["onClientResourceStart"] += new Action<string>(OnClientResourceStart);
             EventHandlers["login"] += new Action<string, string, string, int>(login);
         }
@@ -39,45 +35,46 @@ namespace zClient
             }), false);
         }
 
-        private void login(string username, string email, string group, int temporal_id) 
+        private void login(string username, string email, string group, int temporal_id)
         {
-            string default_skin = config.GetStringValue("spawn_manager", "default_skin", "fallback").ToString();
             float x = float.Parse(config.GetStringValue("spawn_manager", "x", "fallback"));
             float y = float.Parse(config.GetStringValue("spawn_manager", "y", "fallback"));
             float z = float.Parse(config.GetStringValue("spawn_manager", "z", "fallback"));
             float heading = float.Parse(config.GetStringValue("spawn_manager", "heading", "fallback"));
 
             SpawnManager spawn = new SpawnManager();
-            spawn.spawnPlayer(default_skin, x, y, z, heading);
+            spawn.spawnPlayer(x, y, z, heading);
+
             this.username = username;
             this.email = email;
             this.group = group;
             this.temporal_id = temporal_id;
             TriggerEvent("onLogin");
+            checkLogin();
         }
 
-        private async void checkLogin()
+
+
+
+        private bool checkLogin()
         {
-
-            while (true)
+            if (temporal_id > 0)
             {
-                await Delay(0);
-                if (temporal_id > 0)
-                {
-                    FreezeEntityPosition(PlayerPedId(), false);
-                    gamenui.loginNui(false, false, false);
-                    break;
-                }
-                else
-                {
-                  FreezeEntityPosition(PlayerPedId(), true);
-                  gamenui.loginNui(true, false, false);
+                FreezeEntityPosition(PlayerPedId(), false);
+                gamenui.gameNui(false, false, false, "login");
+                return false;
+            }
 
-                }
+            else
+            {
+                FreezeEntityPosition(PlayerPedId(), true);
+                gamenui.gameNui(true, false, false, "login");
+                return true;
 
             }
+
         }
-
-
     }
+
+
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace zClient
 {
-    internal class Inventory
+    internal class character
     {
     }
 }
