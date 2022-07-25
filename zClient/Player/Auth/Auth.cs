@@ -60,8 +60,8 @@ namespace zClient
         {
             if (temporal_id > 0)
             {
+                // charging ped
                 FreezeEntityPosition(PlayerPedId(), false);
-                gamenui.gameNui(false, false, false, "login");
                 return false;
             }
 

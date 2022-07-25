@@ -18,7 +18,8 @@ namespace zServer
         public characterDress() { 
             EventHandlers["get_nose"] += new Action<int, string>(get_nose);
             EventHandlers["update_nose"] += new Action<string, int, int, int, int, int, int>(update_nose);
-            
+            EventHandlers["preview_character"] += new Action<int, int, float>(preview_character);
+
         }
 
 
@@ -82,9 +83,18 @@ namespace zServer
             SetPedFaceFeature(ped, 0, nose_width_f);
             SetPedFaceFeature(ped, 1, nose_peak_f);
             SetPedFaceFeature(ped, 2, nose_length_f);
-            SetPedFaceFeature(ped, 3, nose_length_f);
-            SetPedFaceFeature(ped, 4, nose_bone_f);
+            SetPedFaceFeature(ped, 3, nose_bone_f);
+            SetPedFaceFeature(ped, 4, nose_tip_f);
             SetPedFaceFeature(ped, 5, nose_bone_twist_f);
+
+
+        }
+
+        private void preview_character(int ped, int index, float value)
+        {
+            value =  value / 100;
+
+            SetPedFaceFeature(ped, index, value);
 
 
         }

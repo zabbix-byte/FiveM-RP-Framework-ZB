@@ -20,16 +20,33 @@ namespace zClient
 
             if (app_s == "editcharacter")
             {
+
+                Vector3 cords = GetEntityCoords(PlayerPedId(), false);
+                int cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", cords.X+0.6f, cords.Y - 2.2f, cords.Z-0.15f, 0, 0, 0, GetGameplayCamFov(), true, 0);
+
                 if (open_nui == true)
                 {
                     jsonString = "{\"showcharacterDressNui\": true}";
                     SetNuiFocus(true, true);
+
+                    ClearFocus();
+                    SetEntityHeading(PlayerPedId(), 180);
+
+                    SetCamActive(cam, true);
+                    RenderScriptCams(true, true, 1000, true, false);
+
                 }
                 else
                 {
+    
                     jsonString = "{\"showcharacterDressNui\": false }";
                     SetNuiFocus(false, false);
-                }
+
+                    ClearFocus();
+
+                    RenderScriptCams(false, false, 0, true, false);
+                    DestroyCam(cam, false);
+                };
 
                 SendNuiMessage(jsonString);
             }
@@ -55,9 +72,8 @@ namespace zClient
                         jsonString = "{\"showLoginMenu\": true}";
                     }
 
-
-
                     SetNuiFocus(true, true);
+
                 }
                 else
                 {
