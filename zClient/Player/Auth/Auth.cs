@@ -54,9 +54,8 @@ namespace zClient
 
 
             // SPAWN THE USER
-            spawn.spawnPlayer(x, y, z, heading);
+            loadPlayer(x, y, z, heading);
 
-            TriggerServerEvent("get_nose", this.temporal_id, this.username);
 
             // CLOSING NUI
             gamenui.gameNui(false, false, false, "login");
@@ -64,6 +63,12 @@ namespace zClient
 
             // LOAD COMMADS AND MORE STUFF
             TriggerEvent("onLogin");
+        }
+
+        public void loadPlayer(float x, float y, float z, float h)
+        {
+            spawn.spawnPlayer(x, y, z, h);
+            TriggerServerEvent("get_nose", this.temporal_id, this.username);
         }
 
 

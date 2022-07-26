@@ -48,6 +48,7 @@
     <Compile Include="Player\Auth\AuthCommands.cs" />
     <Compile Include="Player\Auth\loginNui.cs" />
     <Compile Include="Player\character\character.cs" />
+    <Compile Include="Player\character\dead.cs" />
     <Compile Include="Player\commands\Admin.cs" />
     <Compile Include="Player\Inventory\Inventory.cs" />
     <Compile Include="Player\Skills\Skill.cs" />
