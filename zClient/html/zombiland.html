@@ -15,8 +15,10 @@
     <div class="showLoginMenu">
         <div class="main">
             <div class="register">
-                <form>
-                    <h1> REGISTER </h1>
+                <div class="header">
+                    <h1 class="title_header">REGISTER</h1>
+                </div>
+                <div class="form_register">
                     <div class="mb-3">
                         <label style="color:white" for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="register_username" aria-describedby="username" required>
@@ -30,8 +32,8 @@
                         <label style="color:white" for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" class="form-control" id="register_password" required>
                     </div>
-                    <button type="submit" id="submit_register" class="btn btn-outline-light">Register</button>
-                </form>
+                    <button id="submit_register" class="btn btn-outline-light">Register</button>
+                </div>
 
                 <div class="go_to">
                     <button id="login_buttom" class="btn btn-outline-light">Go Login</button>
@@ -40,8 +42,10 @@
             </div>
 
             <div class="login">
-                <form>
-                    <h1> LOGIN </h1>
+                <div class="header">
+                    <h1 class="title_header">LOGIN</h1>
+                </div>
+                <div class="form_login">
                     <div class="mb-3">
                         <label style="color:white" for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" name="username" id="login_username" aria-describedby="emailHelp" required>
@@ -50,9 +54,9 @@
                         <label style="color:white" for="exampleInputPassword1" class="form-label">Password</label>
                         <input type="password" class="form-control" id="login_password" required>
                     </div>
-                    <button type="submit" id="submit_login" class="btn btn-outline-light">Login</button>
+                    <button id="submit_login" class="btn btn-outline-light">Login</button>
                     <h4 id="message_error"></h4>
-                </form>
+                </div>
                 <div class="go_to">
                     <button id="register_buttom" class="btn btn-outline-light">Go Register</button>
                 </div>

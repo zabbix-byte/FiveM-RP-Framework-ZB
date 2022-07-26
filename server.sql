@@ -23,6 +23,7 @@ CREATE TABLE `users` (
 	`password` varchar(100),
 	`email` varchar(100),
 	`group` varchar(100),
+	`character_is_configured` boolean DEFAULT 0,
 
 	-- fivem id
 	`temporal_id` int,

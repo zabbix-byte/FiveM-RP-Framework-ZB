@@ -10,6 +10,11 @@ using static CitizenFX.Core.Native.API;
 
 namespace zClient
 {
+
+    /*
+     * THIS SCRIPT HAVE BASIC USER COMMADS
+     */
+
     internal class AuthCommands : Auth
     {
         ChatMessage chatmes = new ChatMessage();

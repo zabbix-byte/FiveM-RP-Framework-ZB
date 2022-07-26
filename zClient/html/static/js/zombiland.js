@@ -52,7 +52,7 @@ $(function() {
                 username: user,
                 password: pass
             })
-        }).then(resp => resp.json()).then(resp => console.log(resp));
+        }).then(resp => resp.json()).then(resp => console.log(JSON.stringify(resp)));
 
     });
 

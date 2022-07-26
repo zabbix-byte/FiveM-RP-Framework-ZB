@@ -11,6 +11,11 @@ using static CitizenFX.Core.Native.API;
 
 namespace zClient
 {
+    /*
+     * CHARACTER CREATOR 
+     * THIS SCRIPT IS USE TO CREATE A UNIQUE CHARACTER
+     */
+
     internal class characterDressNui : Auth
     {
         ChatMessage chatmes = new ChatMessage();
@@ -39,36 +44,22 @@ namespace zClient
         // on user login 
         private void onLogin()
         {
-            chargeCharacter();
-            RegisterCommand("character", new Action<int, List<object>, string>((source, args, raw) => {
-                gamenui.gameNui(true, false, false, "editcharacter");
-            }), false);
-
+            TriggerServerEvent("check_if_character_is_conf", this.username);
         }
 
-
-        void chargeCharacter()
-        {
-            gamenui.gameNui(false, false, false, "login");
-            Game.Player.ChangeModel(GetHashKey("mp_m_freemode_01"));
-            SetPedHeadBlendData(PlayerPedId(), 0, 0, 0, 0, 0, 0, 0, 0.5f, 0.5f, false);
-            SetPedDefaultComponentVariation(PlayerPedId());
-            TriggerServerEvent("get_nose", this.temporal_id, this.username);
-        }
-
-        void rotateMinus()
+        private void rotateMinus()
         {
             float r = GetEntityHeading(PlayerPedId());
             SetEntityHeading(PlayerPedId(), r-10);
         }
 
-        void rotatePlus()
+        private void rotatePlus()
         {
             float r = GetEntityHeading(PlayerPedId());
             SetEntityHeading(PlayerPedId(), r + 10);
         }
 
-        void zoomFace()
+        private void zoomFace()
         {
             Vector3 cords = GetEntityCoords(PlayerPedId(), false);
             this.cam_zoom = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", cords.X + 0.2f, cords.Y - 0.7f, cords.Z + 0.6f, 0, 0, 0, GetGameplayCamFov(), true, 0);
@@ -77,7 +68,7 @@ namespace zClient
             RenderScriptCams(true, true, 1000, true, false);
         }
 
-        void minFace()
+        private void minFace()
         {
             ClearFocus();
             RenderScriptCams(false, false, 0, true, false);

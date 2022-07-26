@@ -59,16 +59,23 @@ namespace zServer
                 TriggerClientEvent(user, "sendOnUserChat", $"Welcome {username} have fun!");
                 Console.WriteLine($"{username} Login");
             }
-            else { TriggerClientEvent(user, "loginNui", true, true, false);}
+            else { TriggerClientEvent(user, "gameNui", true, true, false, "login");}
         }
 
 
         private void register([FromSource] Player user, string username, string email, string password)
         {
-            string query = $"INSERT INTO `users` (`username`, `email`, `group`, `password`) VALUES ('{username}', '{email}', 'user', '{password}')";
+            string user_string = $"INSERT INTO `users` (`username`, `email`, `group`, `password`) VALUES ('{username}', '{email}', 'user', '{password}')";
             try
             {
-                database_conection.insert(query);
+                database_conection.insert(user_string);
+
+                Dictionary<int, string[]> id = database_conection.directQuery(
+              $"SELECT id FROM users WHERE username = '{username}';");
+                string character = $"INSERT INTO `character` (`user`) VALUES ({id[0][0]})";
+                database_conection.insert(character);
+
+
             }
             catch (Exception ex)
             {

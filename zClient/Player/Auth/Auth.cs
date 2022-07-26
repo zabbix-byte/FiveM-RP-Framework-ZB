@@ -6,11 +6,18 @@ using static CitizenFX.Core.Native.API;
 
 namespace zClient
 {
+    /*
+     * AUTH HANDLER SCRIPT
+     * THIS HANDLE THE USER SPAWN ON THE SERVER AND THE AUTH PART
+     */
+
     public class Auth : BaseScript
     {
         NUI gamenui = new NUI();
         IniFile config = new IniFile("ZombiLand", "config.ini");
         ChatMessage chatmes = new ChatMessage();
+        SpawnManager spawn = new SpawnManager();
+
         public string username { get; set; }
         public string email { get; set; }
         public string group { get; set; }
@@ -24,56 +31,42 @@ namespace zClient
 
         private void OnClientResourceStart(string resourceName)
         {
+            // LOGIC HANGLE
             if (GetCurrentResourceName() != resourceName) return;
 
-            checkLogin();
-
-            RegisterCommand("register", new Action<int, List<object>, string>((source, args, raw) =>
-            {
-                TriggerServerEvent("register", args[0], args[1], args[2]);
-
-            }), false);
+            FreezeEntityPosition(PlayerPedId(), true);
+            gamenui.gameNui(true, false, false, "login");
         }
 
         private void login(string username, string email, string group, int temporal_id)
         {
+            // GETTING CONFIG
             float x = float.Parse(config.GetStringValue("spawn_manager", "x", "fallback"));
             float y = float.Parse(config.GetStringValue("spawn_manager", "y", "fallback"));
             float z = float.Parse(config.GetStringValue("spawn_manager", "z", "fallback"));
             float heading = float.Parse(config.GetStringValue("spawn_manager", "heading", "fallback"));
-
-            SpawnManager spawn = new SpawnManager();
-            spawn.spawnPlayer(x, y, z, heading);
-
+     
+            // CHARGIN BASIC USER IN MEMORY
             this.username = username;
             this.email = email;
             this.group = group;
             this.temporal_id = temporal_id;
+
+
+            // SPAWN THE USER
+            spawn.spawnPlayer(x, y, z, heading);
+
+            TriggerServerEvent("get_nose", this.temporal_id, this.username);
+
+            // CLOSING NUI
+            gamenui.gameNui(false, false, false, "login");
+            FreezeEntityPosition(PlayerPedId(), false);
+
+            // LOAD COMMADS AND MORE STUFF
             TriggerEvent("onLogin");
-            checkLogin();
         }
 
 
-
-
-        private bool checkLogin()
-        {
-            if (temporal_id > 0)
-            {
-                // charging ped
-                FreezeEntityPosition(PlayerPedId(), false);
-                return false;
-            }
-
-            else
-            {
-                FreezeEntityPosition(PlayerPedId(), true);
-                gamenui.gameNui(true, false, false, "login");
-                return true;
-
-            }
-
-        }
     }
 
 

@@ -10,9 +10,13 @@ using static CitizenFX.Core.Native.API;
 
 namespace zClient
 {
+    /*
+     * ADMIN COMMADS
+     */
     internal class Admin : Auth
     {
         ChatMessage chatmes = new ChatMessage();
+        NUI gamenui = new NUI();
 
         public Admin() { 
             EventHandlers["onLogin"] += new Action(onLogin);
@@ -31,6 +35,10 @@ namespace zClient
                 RegisterCommand("coords", new Action<int, List<object>, string>((source, args, raw) =>
                 {
                     chatmes.send(GetEntityCoords(PlayerPedId(), false).ToString());
+                }), false);
+
+                RegisterCommand("character", new Action<int, List<object>, string>((source, args, raw) => {
+                    gamenui.gameNui(true, false, false, "editcharacter");
                 }), false);
 
                 RegisterCommand("tpa", new Action<int, List<object>, string>((source, args, raw) =>

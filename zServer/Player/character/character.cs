@@ -16,14 +16,30 @@ namespace zServer
         DataBase database_conection = new DataBase();
 
         public characterDress() { 
-            EventHandlers["get_nose"] += new Action<int, string>(get_nose);
-            EventHandlers["update_nose"] += new Action<string, int, int, int, int, int, int>(update_nose);
-            EventHandlers["preview_character"] += new Action<int, int, float>(preview_character);
+            EventHandlers["get_nose"] += new Action<int, string>(getNose);
+            EventHandlers["update_nose"] += new Action<string, int, int, int, int, int, int>(updateNose);
+            EventHandlers["preview_character"] += new Action<int, int, float>(previewCharacter);
+            EventHandlers["check_if_character_is_conf"] += new Action<Player, string>(checkIfCharacterIsConfigured);
 
         }
 
 
-        private void update_nose(string username,
+        private void checkIfCharacterIsConfigured([FromSource] Player user, string username)
+        {
+            Dictionary<int, string[]> character_is_configured = database_conection.directQuery(
+              $"SELECT character_is_configured FROM users WHERE username = '{username}';");
+
+            if (character_is_configured[0][0] == "False")
+            {
+                TriggerClientEvent(user, "gameNui", true, false, false, "editcharacter");
+                string query = $"UPDATE `users` SET `character_is_configured` = true WHERE `username` = '{username}'";
+                database_conection.insert(query);
+
+            }
+
+        }
+
+        private void updateNose(string username,
             int nose_width,
             int nose_peak,
             int nose_length,
@@ -47,7 +63,7 @@ namespace zServer
             database_conection.insert(query);
         }
 
-        private void get_nose(int ped, string username)
+        private void getNose(int ped, string username)
         {
 
             Dictionary<int, string[]> id = database_conection.directQuery(
@@ -77,7 +93,7 @@ namespace zServer
             int nose_tip_int = Int32.Parse(data[0][4].ToString());
             float nose_tip_f = (float)nose_tip_int / 100;
 
-            int nose_bone_twist_int = Int32.Parse(data[0][4].ToString());
+            int nose_bone_twist_int = Int32.Parse(data[0][5].ToString());
             float nose_bone_twist_f = (float)nose_bone_twist_int / 100;
 
             SetPedFaceFeature(ped, 0, nose_width_f);
@@ -90,7 +106,7 @@ namespace zServer
 
         }
 
-        private void preview_character(int ped, int index, float value)
+        private void previewCharacter(int ped, int index, float value)
         {
             value =  value / 100;
 

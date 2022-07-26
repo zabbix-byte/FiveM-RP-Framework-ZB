@@ -13,8 +13,14 @@ namespace zClient
 {
     internal class SpawnManager : BaseScript
     {
-        public void spawnPlayer(float x, float y, float z, float heading)
+        async public void spawnPlayer(float x, float y, float z, float heading)
         {
+
+            
+            await Game.Player.ChangeModel(GetHashKey("mp_m_freemode_01"));
+            SetPedHeadBlendData(PlayerPedId(), 0, 0, 0, 0, 0, 0, 0, 0.5f, 0.5f, false);
+            SetPedDefaultComponentVariation(PlayerPedId());
+
             RequestCollisionAtCoord(x, y, z);
             SetEntityCoordsNoOffset(PlayerPedId(), x, y, z, false, false, false);
             NetworkResurrectLocalPlayer(x, y, z, heading, true, true);
