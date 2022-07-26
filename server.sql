@@ -44,6 +44,9 @@ CREATE TABLE `character` (
 	`nose_bone` int NOT NULL DEFAULT 50,
 	`nose_tip` int NOT NULL DEFAULT 50,
 	`nose_bone_twist` int NOT NULL DEFAULT 50,
+	`eyebrow_up_down` int NOT NULL DEFAULT 50,
+	`eyebrow_in_out` int NOT NULL DEFAULT 50,
+	`eyebrow_opening` int NOT NULL DEFAULT 50,
 
 	-- fKey
 	CONSTRAINT `users_character`

@@ -98,6 +98,7 @@ namespace zClient
             if (!data.TryGetValue("type", out type)) { gamenui.gameNui(true, false, false, "editcharacter"); return; }
             if (!data.TryGetValue("value", out value)) { gamenui.gameNui(true, false, false, "editcharacter"); return; }
 
+            // nose
             if (type.ToString() == "nose_width") { TriggerServerEvent("preview_character", this.temporal_id, 0, (float)Int32.Parse(value.ToString())); }
             if (type.ToString() == "nose_peak") { TriggerServerEvent("preview_character", this.temporal_id, 1, (float)Int32.Parse(value.ToString())); }
             if (type.ToString() == "nose_length") { TriggerServerEvent("preview_character", this.temporal_id, 2, (float)Int32.Parse(value.ToString())); }
@@ -105,6 +106,10 @@ namespace zClient
             if (type.ToString() == "nose_tip") { TriggerServerEvent("preview_character", this.temporal_id, 4, (float)Int32.Parse(value.ToString())); }
             if (type.ToString() == "nose_bone_twist") { TriggerServerEvent("preview_character", this.temporal_id, 5, (float)Int32.Parse(value.ToString())); }
 
+            // ease
+            if (type.ToString() == "eyebrow_up_down") { TriggerServerEvent("preview_character", this.temporal_id, 6, (float)Int32.Parse(value.ToString())); }
+            if (type.ToString() == "eyebrow_in_out") { TriggerServerEvent("preview_character", this.temporal_id, 7, (float)Int32.Parse(value.ToString())); }
+            if (type.ToString() == "eyebrow_opening") { TriggerServerEvent("preview_character", this.temporal_id, 8, (float)Int32.Parse(value.ToString())); }
         }
         private void editCharacter(IDictionary<string, object> data)
         {
@@ -115,6 +120,10 @@ namespace zClient
             object nose_tip;
             object nose_bone_twist;
 
+            object eyebrow_up_down;
+            object eyebrow_in_out;
+            object eyebrow_opening;
+
             if (!data.TryGetValue("nose_width", out nose_width)) { gamenui.gameNui(true, false, false, "editcharacter"); return; }
             if (!data.TryGetValue("nose_peak", out nose_peak)) { gamenui.gameNui(true, false, false, "editcharacter"); return; }
 
@@ -123,6 +132,10 @@ namespace zClient
             if (!data.TryGetValue("nose_tip", out nose_tip)) { gamenui.gameNui(true, false, false, "editcharacter"); return; }
             if (!data.TryGetValue("nose_bone_twist", out nose_bone_twist)) { gamenui.gameNui(true, false, false, "editcharacter"); return; }
 
+            if (!data.TryGetValue("eyebrow_up_down", out eyebrow_up_down)) { gamenui.gameNui(true, false, false, "editcharacter"); return; }
+            if (!data.TryGetValue("eyebrow_in_out", out eyebrow_in_out)) { gamenui.gameNui(true, false, false, "editcharacter"); return; }
+            if (!data.TryGetValue("eyebrow_opening", out eyebrow_opening)) { gamenui.gameNui(true, false, false, "editcharacter"); return; }
+
             int nose_width_int = Int32.Parse(nose_width.ToString());
             int nose_peak_int = Int32.Parse(nose_peak.ToString());
             int nose_length_int = Int32.Parse(nose_length.ToString());
@@ -130,9 +143,25 @@ namespace zClient
             int nose_tip_int = Int32.Parse(nose_tip.ToString());
             int nose_bone_twist_int = Int32.Parse(nose_bone_twist.ToString());
 
+            int eyebrow_up_down_int = Int32.Parse(eyebrow_up_down.ToString());
+            int eyebrow_in_out_int = Int32.Parse(eyebrow_in_out.ToString());
+            int eyebrow_opening_int = Int32.Parse(eyebrow_opening.ToString());
+
+
+
             if (this.temporal_id > 0)
             {
-                TriggerServerEvent("update_nose", this.username, nose_width_int, nose_peak_int, nose_length_int, nose_bone_int, nose_tip_int, nose_bone_twist_int);
+                TriggerServerEvent("update_nose", this.username, nose_width_int,
+                    nose_peak_int,
+                    nose_length_int,
+                    nose_bone_int,
+                    nose_tip_int,
+                    nose_bone_twist_int,
+                    eyebrow_up_down_int,
+                    eyebrow_in_out_int,
+                    eyebrow_opening_int
+                    );
+
                 TriggerServerEvent("get_nose", this.temporal_id, this.username);
             }
 

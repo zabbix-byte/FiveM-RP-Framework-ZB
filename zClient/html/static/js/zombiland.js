@@ -148,6 +148,53 @@ $(function() {
             })
         }).then(resp => resp.json()).then(resp => console.log(resp));
     };
+
+    document.getElementById('eyebrow_up_down').onchange = function () {
+        var value = $("#eyebrow_up_down").val();
+
+        fetch(`https://ZombiLand/previewcharacter`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                value: value,
+                type: "eyebrow_up_down"
+            })
+        }).then(resp => resp.json()).then(resp => console.log(resp));
+    };
+
+    document.getElementById('eyebrow_in_out').onchange = function () {
+        var value = $("#eyebrow_in_out").val();
+
+        fetch(`https://ZombiLand/previewcharacter`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                value: value,
+                type: "eyebrow_in_out"
+            })
+        }).then(resp => resp.json()).then(resp => console.log(resp));
+    };
+
+    document.getElementById('eyebrow_opening').onchange = function () {
+        var value = $("#eyebrow_opening").val();
+
+        fetch(`https://ZombiLand/previewcharacter`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                value: value,
+                type: "eyebrow_opening"
+            })
+        }).then(resp => resp.json()).then(resp => console.log(resp));
+    };
+
+
     //
 
 
@@ -158,6 +205,10 @@ $(function() {
         var bone = $("#nose_bone").val();
         var tip = $("#nose_tip").val();
         var bone_twist = $("#nose_bone_twist").val();
+
+        var eyebrow_updown = $("#eyebrow_up_down").val();
+        var eyebrow_inout = $("#eyebrow_in_out").val();
+        var eyebrow_op = $("#eyebrow_opening").val();
 
         fetch(`https://ZombiLand/editcharacter_nui`, {
             method: 'POST',
@@ -171,6 +222,9 @@ $(function() {
                 nose_bone: bone,
                 nose_tip: tip,
                 nose_bone_twist: bone_twist,
+                eyebrow_up_down: eyebrow_updown,
+                eyebrow_in_out: eyebrow_inout,
+                eyebrow_opening: eyebrow_op
             })
         }).then(resp => resp.json()).then(resp => console.log(resp));
     });
