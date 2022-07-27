@@ -23,6 +23,7 @@ namespace zClient
         public string group { get; set; }
         public int temporal_id { get; set; }
 
+
         public Auth()
         {
             EventHandlers["onClientResourceStart"] += new Action<string>(OnClientResourceStart);
@@ -35,6 +36,7 @@ namespace zClient
             if (GetCurrentResourceName() != resourceName) return;
 
             FreezeEntityPosition(PlayerPedId(), true);
+
             gamenui.gameNui(true, false, false, "login");
         }
 
@@ -60,6 +62,7 @@ namespace zClient
             // CLOSING NUI
             gamenui.gameNui(false, false, false, "login");
             FreezeEntityPosition(PlayerPedId(), false);
+
 
             // LOAD COMMADS AND MORE STUFF
             TriggerEvent("onLogin");

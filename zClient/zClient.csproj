@@ -55,8 +55,11 @@
     <Compile Include="Player\SpawnManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utils\Chat\ChatMessage.cs" />
+    <Compile Include="utils\npcControl.cs" />
     <Compile Include="utils\IniFile.cs" />
     <Compile Include="utils\NUI.cs" />
+    <Compile Include="zombi\SpawnerZombi.cs" />
+    <Compile Include="zombi\zoneTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json">
@@ -72,5 +75,6 @@
     <Content Include="html\static\css\login.css" />
     <Content Include="html\static\js\zombiland.js" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

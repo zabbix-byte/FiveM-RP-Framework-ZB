@@ -51,6 +51,7 @@
     <Compile Include="Player\commands\Admin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utils\IniFile.cs" />
+    <Compile Include="zomb\SpawnerZombi.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
