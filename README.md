@@ -1,7 +1,9 @@
 ## FiveM RP Framework ZB
 
-### Creating 🐧¡
-### The framework is under construction
+[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/donate/?hosted_button_id=5MTHH82ABTJDA)
+
+This fivem framework in this moment is under contruction.
+
 <hr>
 
 #### In this moment:
