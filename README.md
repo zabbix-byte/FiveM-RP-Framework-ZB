@@ -1,4 +1,4 @@
-## 🧟 FiveM RP Framework Core
+## FiveM RP Framework ZB
 
 ### Creating 🐧¡
 ### The framework is under construction
